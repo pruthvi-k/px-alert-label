@@ -1,3 +1,7 @@
+v1.2.1
+==================
+* Updated to px-demo-design and px-demo
+
 v1.2.0
 ==================
 * Updated dependencies
