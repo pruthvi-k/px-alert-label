@@ -43,12 +43,14 @@ Custom property | Description | Default
 -->
 
 <link rel="import" href="css/px-alert-label-styles.html">
+<link rel="import" href="css/px-alert-label-line-styles.html">
 
 <dom-module id="px-alert-label">
   <template>
     <style include="px-alert-label-styles"></style>
-    
-    <span class$="{{_alertStyle}}">{{label}}</span>
+    <style include="px-alert-label-line-styles"></style>
+    <div class="visuallyhidden" id="line"><div class$="alertlabel-line {{_alertStyle}}"></div></div>
+    <span class$="alertlabel {{_alertStyle}}">{{label}}</span>
   </template>
 </dom-module>
 
@@ -80,7 +82,17 @@ Custom property | Description | Default
        * @type String
        */
       label: String,
-
+      /**
+       * The line to display above the label.
+       *
+       * @property lineHeight
+       * @type Number
+       */
+      lineHeight: {
+        type: Number,
+        value:30,
+        observer: '_lineHeightChange'
+      },
       /**
        * Computed class names that correspond to each label type.
        *
@@ -93,9 +105,36 @@ Custom property | Description | Default
         type: String,
         reflect: true,
         computed: '_computeAlertStyle(type)'
+      },
+      /**
+       * A boolean reflecting whether the line should be shown.
+       */
+      showLine: {
+        type: Boolean,
+        value: false,
+        observer: '_showLineChanged'
       }
     },
-
+    /**
+     * Function to define height of line that is to be shown above label.
+     * @method _lineHeightChange
+     */
+    _lineHeightChange: function () {
+      if(this.lineHeight){
+        this.querySelector(".alertlabel-line").style.height = this.lineHeight + "px";
+      }
+    },
+    /**
+     * Function that is called if the show-line property is changed.
+     * @method _showLineChanged
+     */
+    _showLineChanged: function (newValue, oldValue) {
+      if(newValue == false) {
+        this.toggleClass('visuallyhidden', true, this.$.line);
+      } else {
+        this.toggleClass('visuallyhidden', false, this.$.line);
+      }
+    },
     /**
      * Computes class names that correspond to each label type.
      *
@@ -112,7 +151,7 @@ Custom property | Description | Default
         case 'healthy':
         case 'healthy-inverted':
         case 'unknown':
-          return 'alertlabel alertlabel--' + typeLowercase;
+          return 'alertlabel--' + typeLowercase;
         default:
           return '';
       }

@@ -1,19 +1,19 @@
 <!-- Common imports -->
-<link rel="import" href="../../polymer/polymer.html" />
-<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+<link rel="import" href="../../polymer/polymer.html"/>
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html"/>
 
 <!-- Common demo imports -->
-<link rel="import" href="../../px-demo/px-demo-header.html" />
-<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
-<link rel="import" href="../../px-demo/px-demo-footer.html" />
-<link rel="import" href="../../px-demo/px-demo-configs.html" />
-<link rel="import" href="../../px-demo/px-demo-props.html" />
-<link rel="import" href="../../px-demo/px-demo-interactive.html" />
-<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+<link rel="import" href="../../px-demo/px-demo-header.html"/>
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html"/>
+<link rel="import" href="../../px-demo/px-demo-footer.html"/>
+<link rel="import" href="../../px-demo/px-demo-configs.html"/>
+<link rel="import" href="../../px-demo/px-demo-props.html"/>
+<link rel="import" href="../../px-demo/px-demo-interactive.html"/>
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html"/>
 
 <!-- Imports for this componnent -->
-<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
-<link rel="import" href="../px-alert-label.html" />
+<link rel="import" href="../../px-demo/css/px-demo-styles.html"/>
+<link rel="import" href="../px-alert-label.html"/>
 
 <!-- Demo DOM module -->
 <dom-module id="local-element-demo">
@@ -22,8 +22,8 @@
 
     <!-- Header -->
     <px-demo-header
-        module-name="px-alert-label"
-        description="Alert Labels are used to draw attention to a particular piece of information on the screen. Each type of
+      module-name="px-alert-label"
+      description="Alert Labels are used to draw attention to a particular piece of information on the screen. Each type of
         label (important, warning, error, information, healthy, healthy inverted, and unknown) has its own distinct
         background color and appropriate font color for maximum visibility. The text within the label is configurable,
         but will always show up in all capital letters. Avoid using action verbs in an alert label, as users may
@@ -41,18 +41,20 @@
       <!-- Component ---------------------------------------------------------->
       <px-demo-component>
 
-        <div>
+        <div style="height: 200px">
           <px-alert-label
-              type="{{props.type.value}}"
-              label="{{props.label.value}}">
+            line-height="{{props.lineHeight.value}}"
+            show-line="{{props.showLine.value}}"
+            type="{{props.type.value}}"
+            label="{{props.label.value}}">
           </px-alert-label>
         </div>
       </px-demo-component>
       <!-- END Component ------------------------------------------------------>
 
       <px-demo-component-snippet
-          element-properties="{{props}}"
-          element-name="px-alert-label">
+        element-properties="{{props}}"
+        element-name="px-alert-label">
       </px-demo-component-snippet>
     </px-demo-interactive>
 
@@ -73,23 +75,37 @@
 
       props: {
         type: Object,
-        value: function(){ return this.demoProps; }
+        value: function () {
+          return this.demoProps;
+        }
       },
 
       configs: {
         type: Array,
-        value: function(){
+        value: function () {
           return [
-            { configName: "Important",
-              configReset: true },
+            {
+              configName: "Important",
+              lineHeight: 20,
+              configReset: true,
+              showLine: true
+            },
 
-            { configName: "Info",
+            {
+              configName: "Info",
               type: "info",
-              label: "Information" },
+              lineHeight: 40,
+              label: "Information",
+              showLine:false
+            },
 
-            { configName: "Warning",
+            {
+              configName: "Warning",
               type: "warning",
-              label: "Uh oh!" }
+              lineHeight: 60,
+              label: "Uh oh!",
+              showLine: true
+            }
           ]
         }
       }
@@ -105,12 +121,21 @@
         defaultValue: 'Caution!',
         inputType: 'text'
       },
-
       type: {
         type: String,
         defaultValue: 'Important',
         inputType: 'dropdown',
         inputChoices: ['important', 'warning', 'error', 'info', 'healthy', 'healthy-inverted', 'unknown']
+      },
+      lineHeight: {
+        type: Number,
+        defaultValue: 20,
+        inputType: 'text'
+      },
+      showLine: {
+        type: Boolean,
+        inputType: 'toggle',
+        defaultValue: false
       }
     }
 
