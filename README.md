@@ -2,6 +2,10 @@ Px-Alert-Label [![Build Status](https://travis-ci.org/PredixDev/px-alert-label.s
 -----------------------------------------------
 [![px-alert-label demo](px-alert-label.png?raw=true)](https://github.com/PredixDev/px-alert-label)
 
+
+[![px-alert-label demo](px-alert-label-with-linepoint.png?raw=true)](https://github.com/PredixDev/px-alert-label)
+
+
 ## Overview
 
 Px-Alert-Label is a Predix Experience ('Px') component
@@ -34,6 +38,9 @@ Finally, use the component in your application:
 
 ```
 <px-alert-label type="important"></px-alert-label><span>Drink your beer!</span>
+```
+```
+<px-alert-label type="information" line-height="30" show-line="true"></px-alert-label><span>Drink your beer!</span>
 ```
 
 <br />
