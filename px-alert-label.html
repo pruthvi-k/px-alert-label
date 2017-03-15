@@ -49,8 +49,10 @@ Custom property | Description | Default
   <template>
     <style include="px-alert-label-styles"></style>
     <style include="px-alert-label-line-styles"></style>
-    <div class="visuallyhidden" id="line"><div class$="alertlabel-line {{_alertStyle}}"></div></div>
+    <div style="display: inline-block">
+   <div class$="alertlabel-line {{_alertStyle}} visuallyhidden" id="line"></div>
     <span class$="alertlabel {{_alertStyle}}">{{label}}</span>
+    </div>
   </template>
 </dom-module>
 
