@@ -40,7 +40,7 @@ Finally, use the component in your application:
 <px-alert-label type="important"></px-alert-label><span>Drink your beer!</span>
 ```
 ```
-<px-alert-label type="information" line-height="30" show-line="true"></px-alert-label><span>Drink your beer!</span>
+<px-alert-label type="information" line-height="30" show-line="true"></px-alert-label><span>Caution!</span>
 ```
 
 <br />
